@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 98919472}
   - component: {fileID: 98919471}
   - component: {fileID: 98919476}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2447,6 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c3da940ceef46b1845d1f6011ea38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 9154053393532117614, guid: 0b70bec1d7da44da38c05e9fe42198e9, type: 3}
   player: {fileID: 98919475}
   nativeWeb: {fileID: 1604406184}
   webGLWebsocket: {fileID: 1604406183}
@@ -2898,7 +2899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8516168062869677864}
   m_LocalRotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 20, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0.03, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 844302496}

@@ -43,44 +43,44 @@ players = {} #dictionary with all players; id is key and class is value
 async def server_websocket (websocket: WebSocket, player_name: str):
 	global players
 	player_id = -1 #id is assigned after websocket is connected
-	#try:
-	await websocket.accept()
+	try:
+		await websocket.accept()
 
-	while True:
-		#data is sent by client
-		data = await asyncio.wait_for(websocket.receive_text(), 10) #10s timeout; when timed error is thrown
+		while True:
+			#data is sent by client
+			data = await asyncio.wait_for(websocket.receive_text(), 10) #10s timeout; when timed error is thrown
 
-		return_text = "error"
+			return_text = "error"
 
-		#if data is still a string requesting for id return an id back
-		if data == "request_id":
-			if player_id == -1:
-				player_id = assign_player_id()
-				#create new player
-				players[player_id] = Player(player_name=player_name, player_id=player_id)
-			return_text = str(player_id)
-		else:
-			#data should be a json file that can be parsed
-			try:
-				player_info = json.loads(data)
-				players[player_info["pid"]].position = [player_info["position_x"], player_info["position_y"], player_info["position_z"]]
-				players[player_info["pid"]].rotation = [player_info["rotation_y"]]
+			#if data is still a string requesting for id return an id back
+			if data == "request_id":
+				if player_id == -1:
+					player_id = assign_player_id()
+					#create new player
+					players[player_id] = Player(player_name=player_name, player_id=player_id)
+				return_text = str(player_id)
+			else:
+				#data should be a json file that can be parsed
+				try:
+					player_info = json.loads(data)
+					players[player_info["pid"]].position = [player_info["position_x"], player_info["position_y"], player_info["position_z"]]
+					players[player_info["pid"]].rotation = [player_info["rotation_y"]]
 
-				#add rotation, new messages, etc
-			except:
-				print("player info json could not be parsed")
+					#add rotation, new messages, etc
+				except:
+					print("player info json could not be parsed")
 
-			#return a json string of all player classes
-			return_text = ClientInfo(players=players, recent_messages=[]).to_JSON()
+				#return a json string of all player classes
+				return_text = ClientInfo(players=players, recent_messages=[]).to_JSON()
 
-		#return data to client side
-		await asyncio.wait_for(websocket.send_text(return_text), 10)
-	# except:
-	# 	#remove player coordinate from positions
-	# 	if player_id != -1:
-	# 		del players[player_id]
+			#return data to client side
+			await asyncio.wait_for(websocket.send_text(return_text), 10)
+	except:
+		#remove player coordinate from positions
+		if player_id != -1:
+			del players[player_id]
 
-	# 	print("player #" + str(player_id) + " has left the game")
+		print("player #" + str(player_id) + " has left the game")
 
 def assign_player_id():
 	global players
