@@ -11,7 +11,8 @@ public class NativeWebsocket : MonoBehaviour {
     public NetworkManager networkMaster;
     Uri u;
     ClientWebSocket cws = null;
-    ArraySegment<byte> buf = new ArraySegment<byte>(new byte[1024]);
+    //if not enough for data, increase buffer size...
+    ArraySegment<byte> buf = new ArraySegment<byte>(new byte[16384]);
     public void EstablishWebsocket(Uri uri) {
         u = uri;
         Connect();

@@ -19,12 +19,21 @@ public class SC_FPSController : MonoBehaviour {
     [HideInInspector]
     public bool canMove = true;
 
+    public static SC_FPSController instance;
+
     void Start() {
+        instance = this;
         characterController = GetComponent<CharacterController>();
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+    //NOTE: CharacterController resets player position, therefore must be turned off for setting
+    public void SetPosition(Vector3 pos) {
+        characterController.enabled = false;
+        transform.position = pos;
+        characterController.enabled = true;
     }
 
     void Update() {

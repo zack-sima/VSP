@@ -6,11 +6,11 @@ mergeInto(LibraryManager.library, {
 
 		this.socket.onmessage = function(event) {
 			//console.log(event.data);
-			unityInstance.SendMessage("WebGLMaster", "ReceivedWebsocket", event.data);
+			//NOTE: the first string is in-game object name... MUST match with editor
+			unityGame.SendMessage("NetworkManager", "ReceivedWebsocket", event.data);
 		}
 		this.socket.onopen = function(event) {
-			unityInstance.SendMessage("WebGLMaster", "OnConnected", event.data);
-			
+			unityGame.SendMessage("NetworkManager", "OnConnected", event.data);
 		}
 	},
 	WebSocketClose: function(message) {

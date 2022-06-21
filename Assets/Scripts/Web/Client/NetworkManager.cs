@@ -48,9 +48,9 @@ public class NetworkManager : MonoBehaviour {
 
     void InitializeURI() {
         if (localNetworking) {
-            u = new Uri("ws://localhost:8000/server/my_name");
+            u = new Uri("ws://localhost:7000/server/my_name");
         } else {
-            u = new Uri("ws://47.88.27.128:8000/server/" + (PlayerPrefs.GetString("playerName") != "" ? PlayerPrefs.GetString("playerName") : "Player"));
+            u = new Uri("ws://47.88.27.128:7000/server/" + (PlayerPrefs.GetString("playerName") != "" ? PlayerPrefs.GetString("playerName") : "Player"));
             //u = new Uri("ws://retrocombat.com/server/my_name");
         }
     }

@@ -35,7 +35,7 @@ class ClientInfo:
 
 	#https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
 	def to_JSON(self):
-		return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+		return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=0, separators=(',',':'))
 
 players = {} #dictionary with all players; id is key and class is value
 
@@ -90,4 +90,4 @@ def assign_player_id():
 		i += 1
 	return i
 
-uvicorn.run(app, port=8000, host="0.0.0.0")
+uvicorn.run(app, port=7000, host="0.0.0.0")
