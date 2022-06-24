@@ -80,7 +80,7 @@ public class NetworkManager : MonoBehaviour {
             }
         } else {
             //parse for json
-            print("original: " + message);
+//            print("original: " + message);
             ClientInfo c = (ClientInfo)MyJsonUtility.FromJson(typeof(ClientInfo), message);
 
             //make a deepcopy of the original dictionary
@@ -109,7 +109,7 @@ public class NetworkManager : MonoBehaviour {
 
             //control other players (temporary)
             
-            print("new: " + MyJsonUtility.ToJson(typeof(ClientInfo), c));
+//            print("new: " + MyJsonUtility.ToJson(typeof(ClientInfo), c));
         }
     }
     //called by both compiled implementation and webgl implementation
@@ -119,7 +119,7 @@ public class NetworkManager : MonoBehaviour {
             return "request_id";
         }
 
-        print(MyJsonUtility.ToJson(typeof(PlayerInfo), new PlayerInfo(playerId, player, null)));
+//        print(MyJsonUtility.ToJson(typeof(PlayerInfo), new PlayerInfo(playerId, player, null)));
         return MyJsonUtility.ToJson(typeof(PlayerInfo), new PlayerInfo(playerId, player, null));
     }
 
